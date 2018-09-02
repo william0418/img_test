@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import PIL.Image as Image
 
-def his(b):
+def his_equalization(b):
     img = Image.open(b)
     arr = np.array(img)
     arr = arr[:,:,1]
