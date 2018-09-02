@@ -63,10 +63,35 @@ def special_filters(a,kernel,avg):
     plt.imshow(arr_o)
     plt.show()
 
+    
+    
+    
+
+def gray(b):
+    img = Image.open(b)
+    print(img.size)
+    arr_o = np.array(img)
+
+    arr = np.array([0.3333,0.3333,0.3333])
+    for i in range(img.size[1]):
+        for j in range(img.size[0]):
+            arr_o[i][j] = np.matmul(arr_o[i][j],arr)
+
+    print (arr_o[1][1])
+
+    plt.imshow(arr_o)
+    plt.show()
+
+    
+    
+    
+    
+    
+##########################################################
 # img = Image.open('img.jpg')
 # print(img.size)
 # arr_o = np.array(img)
-#
+# 
 #
 # ################################
 # #set the kernel
@@ -124,23 +149,8 @@ def special_filters(a,kernel,avg):
 # plt.show()
 #
 # ############################
-#
-#
-#
-# def gray(b):
-#     img = Image.open(b)
-#     print(img.size)
-#     arr_o = np.array(img)
-#
-#     arr = np.array([0.3333,0.3333,0.3333])
-#     for i in range(img.size[1]):
-#         for j in range(img.size[0]):
-#             arr_o[i][j] = np.matmul(arr_o[i][j],arr)
-#
-#     print (arr_o[1][1])
-#
-#     plt.imshow(arr_o)
-#     plt.show()
+
+
 
 ########turn to gray scale#######
 # arr = np.array([0.3333,0.3333,0.3333])
