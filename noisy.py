@@ -24,28 +24,42 @@ print(img)
 image = Image.open('img.jpg')
 image = np.array(image)
 
-print(image.shape)
+'''
+Be careful:
+
+datatype decide which range of values to expect
+uint8 are expected to be 0 to 255
+float are expected to be 0 to 1
+
+'''
+
+
+
+image = image.astype(float)
+
+for i in range(image.shape[0]):
+    for j in range(image.shape[1]):
+        image[i,j] = image[i,j]/255
+
+# print(image)
 
 row,col,ch= image.shape
-image.reshape(row,col*3)
 mean = 0
-var = 50
+var = 0.01
 sigma = var**0.5
-# gauss = np.random.normal(mean,sigma,(row,col,ch))
-# gauss = gauss.reshape(row,col,ch)
-# noisy = image + gauss
+gauss = np.random.normal(mean,sigma,(row,col,ch))
+gauss = gauss.reshape(row,col,ch)
+image = image + gauss
 
-gauss = np.random.normal(mean,sigma,(row,col))
-gauss = gauss.reshape(row,col)
-
-image[:,:,0] = image[:,:,0] + gauss
-image[:,:,1] = image[:,:,1] + gauss
-image[:,:,2] = image[:,:,2] + gauss
-
+# gauss = np.random.normal(mean,sigma,(row,col))
+# gauss = gauss.reshape(row,col)
+#
+#
+# image[:,:,0] = image[:,:,0] + gauss
+# image[:,:,1] = image[:,:,1] + gauss
+# image[:,:,2] = image[:,:,2] + gauss
 
 print(gauss)
-print('1111111111111111111111111111')
-print(image)
 
 plt.imshow(image)
 plt.show()
