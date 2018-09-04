@@ -1,0 +1,25 @@
+arr_o = cv2.imread('img.jpg', cv2.IMREAD_GRAYSCALE)
+
+cv2.imshow('input',arr_o)
+
+arr_new = np.reshape(arr_o,-1)
+
+arr_count = np.zeros((256,),dtype = int)
+arr = arr_new
+for i in range(arr_new.shape[0]):
+    j = arr[i]
+    arr_count[j]+=1
+# print(arr_count)
+
+for i in range(1,256):
+    arr_count[i] = arr_count[i]+arr_count[i-1]
+
+all_pixel = arr_count[255]
+
+for i in range(arr_o.shape[0]):
+    for j in range(arr_o.shape[1]):
+        a = arr_o[i,j]
+        arr_o[i,j] = ((arr_count[a]-1)/all_pixel)*255
+
+cv2.imshow('output',arr_o)
+cv2.waitKey()
