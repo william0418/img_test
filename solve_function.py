@@ -28,26 +28,26 @@ for i in range(img.shape[0]):
             arr_xy[3,i] = pow(arr[1,i],1)
             arr_xy[4,i] = pow(arr[1,i],2)
             arr_xy[5,i] = arr[0,i]*arr[1,i]
-            break()
+            break
 
 for i in range(img.shape[0]):
     for j in range(im.shape[1]):
         if im[i,im.shape[1]-j] != 0:
             arr[0,img.shape[0]+i] = i
             arr[1,img.shape[0]+i] = im.shape[1]-j
-            break()
+            break
 
 for j in range(img.shape[1]):
     for i in range(img.shape[0]):
         if im[i,j]!= 0:
             arr[0,2*img.shape[0]+j] = i
             arr[1,2*img.shape[0]+j] = j
-            break()
+            break
 
 for j in range(img.shape[1]):
     for i in range(img.shape[0]):
         if im[img.shape[0]-i,j]!= 0:
             arr[0,2*img.shape[0]+img.shape[1]+j] = img.shape[0]-i
             arr[1,2*img.shape[0]+img.shape[1]+j] = j
-            break()
+            break
 print(arr)
