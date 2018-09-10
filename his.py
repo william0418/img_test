@@ -56,7 +56,6 @@ import cv2
     # plt.imshow(arr)
     # plt.show()
     #
-
     # plt.hist(arr2, bins = 256, range=(1, 256))
     # plt.xlabel('x')
     # plt.ylabel('y')
@@ -84,18 +83,21 @@ for i in range(1,256):
 
 all_pixel = arr_count[255]
 
+arr_golble = arr_o.copy()
+
 for i in range(arr_o.shape[0]):
     for j in range(arr_o.shape[1]):
         a = arr_o[i,j]
-        arr_o[i,j] = ((arr_count[a]-1)/all_pixel)*255
+        arr_golble[i,j] = ((arr_count[a]-arr_count[0])/(all_pixel-arr_count[0]))*255
 
-cv2.imshow('golble',arr_o)
+cv2.imshow('golble',arr_golble)
 
 ###local
 
-local_max = 100
+local_max = 255
 local_min = 0
 
+arr_o = cv2.imread('img.jpg', cv2.IMREAD_GRAYSCALE)
 
 local_pixel = arr_count[local_max]-arr_count[local_min]
 
