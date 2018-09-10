@@ -1,39 +1,38 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import PIL.Image as Image
+import cv2
 
 def gray(b):
-    img = Image.open(b)
-    print(img.size)
+    img = cv2.imread(b)
+    print(img.shape)
     arr_o = np.array(img)
 
     arr = np.array([0.3333,0.3333,0.3333])
-    for i in range(img.size[1]):
-        for j in range(img.size[0]):
+    for i in range(img.shape[0]):
+        for j in range(img.shape[1]):
             arr_o[i][j] = np.matmul(arr_o[i][j],arr)
 
     print (arr_o[1][1])
     return arr_o
-    plt.imshow(arr_o)
-    plt.show()
 
 
 
 
 #######################################################
 
-image = gray('gray.jpg')
+image = gray('img.jpg')
+
+level = 150
 
 for i in range(3):
     for j in range(image.shape[0]):
         for k in range(image.shape[1]):
-            if image[j,k,i] < 128:
+            if image[j,k,i] < level:
                 image[j,k,i]=0
             else:
                 image[j,k,i]=255
 
 
-print(image)
-
-plt.imshow(image)
-plt.show()
+cv2.imshow('thresholding', image)
+cv2.waitKey()
